@@ -20,7 +20,6 @@ import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,13 +41,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setAlarmTime(hour : Int, minute : Int){
+    private fun setAlarmTime(hour : Int, minute : Int){
         val alarmtime = Calendar.getInstance()
         val year = alarmtime.get(Calendar.YEAR)
         val month = alarmtime.get(Calendar.MONTH)
         val date = alarmtime.get(Calendar.DATE)
         alarmtime.set(year, month, date, hour, minute, 0)
-        val textAlarmTime : TextClock = findViewById(R.id.createAlarm)
+        val textAlarmTime : TextClock = findViewById(R.id.textClock)
         textAlarmTime.text = SimpleDateFormat("hh:mm:ss a").format(alarmtime.time)
         setAlarm(alarmtime.timeInMillis, AlarmBroadcastReciver.ALARAMSTART)
         Toast.makeText(this, "Alarm Set", Toast.LENGTH_LONG).show()
